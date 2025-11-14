@@ -1,0 +1,151 @@
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: rgba(126, 125, 255, 0.6); 
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 15rem;
+}
+
+.nav-links a {
+  position: relative;
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s;
+  overflow: hidden;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #7E7DFF;
+  transition: width 0.3s cubic-bezier(.4,2,.6,1);
+  border-radius: 2px;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+  color: #7E7DFF;
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus::after {
+  width: 100%;
+}
+   
+  body {
+      margin: 0;
+      padding: 0;
+    
+      background-color: #F0EBED;
+        font-family: 'Raleway', 'Runway', Arial, sans-serif;
+    }
+
+
+    .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .card {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.text-content {
+  flex: 1;
+}
+
+.text-content p {
+  line-height: 1.6;
+}
+
+.link-button {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background-color: #05046A;
+  color: white;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.link-button:hover {
+  background-color: #1d4ed8;
+}
+
+.image-content {
+  flex: 1;
+  text-align: center;
+}
+
+.image-content img {
+  width: 100%;
+  border-radius: 1rem;
+  max-width: 400px;
+}
+
+.decorative-shapes {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.shape {
+  width: 24px;
+  height: 24px;
+  border-radius: 50% 50% 0 0;
+  transform: rotate(45deg);
+}
+
+
+/* Subtle Fade-in Animation */
+.container {
+  animation: fadeIn 1.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

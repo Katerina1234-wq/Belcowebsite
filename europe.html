@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Europe</title>
+     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<section class="partners-intro-box">
+    <article class="partners-intro-content">
+        <div class="partners-intro-header"><strong>We partner with top institutions in Europe</strong></div>
+        <div class="partners-intro-text">The BELCO Alliance’s governance reflects its collaborative nature. Built on a strong institutional relationships, mutual trust and the common strategic goals. Below you find all partners in our alliance.</div>
+        <div class="partners-intro-sub"> 
+            <img src="static/arrow.png" alt="arrow" class="partners-intro-arrow">
+            <div class="partners-intro-subtext">Up to 20 partners</div>
+        </div>
+    
+    </article>
+
+ 
+    <article class="partners-intro-image">
+        <img src="static/partnerspageimg.png" alt="Partners-pages-img" class="partners-intro-img">
+    </article>
+
+    
+</section>
+
+
+<section class="partners-pages">
+
+    <article class="partners-pages-header"><strong>Our Partners</strong></article>
+
+  <div class="filter-bar">
+    <select id="regionSelect">
+      <option value="">Where do you want to go?</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="North America">North America</option>
+      <option value="South America">South America</option>
+      <option value="Africa">Africa</option>
+      <option value="Australia">Australia</option>
+    </select>
+
+    <select id="programSelect">
+      <option value="">Which study field?</option>
+      <option value="Business & Economics">Business & Economics</option>
+      <option value="Engineering & Technology">Engineering & Technology</option>
+      <option value="General & Comprehensive Studies">General & Comprehensive Studies</option>
+      <option value="Arts, Humanities & Social Sciences">Arts, Humanities & Social Sciences</option>
+    </select>
+
+    <button class="searchbtn" onclick="applyFilters()">Search</button>
+  </div>
+
+  <div class="container" id="universityList"></div>
+
+  <script>
+    const universities = [
+      { image:"static/newz.png",name: "Nelson Marlborough Institute of Technology (NMIT)", country: "New Zealand", city: "Nelson", region: "Australia", program: "Engineering & Technology", link: "https://www.nmit.ac.nz/" },
+      { name: "Ryukoku University", country: "Japan", city: "Kyoto", region: "Asia", program: "Arts, Humanities & Social Sciences", link: "https://www.ryukoku.ac.jp/english2/",image:"static/ryoko.png" },
+      { image:"static/germ.png",name: "CBS International Business School", country: "Germany", city: "Cologne", region: "Europe", program: "Business & Economics", link: "https://www.cbs.de/en/" },
+      { image:"static/fin.png",name: "LAB University of Applied Sciences", country: "Finland", city: "Lahti and Lappeenranta", region: "Europe", program: "Engineering & Technology", link: "https://lab.fi/en" },
+      { image:"static/ec.png",name: "Universidad Intercencial del Ecuador", country: "Ecuador", city: "Quito", region: "South America", program: "General & Comprehensive Studies", link: "https://www.unemi.edu.ec/" },
+      { image:"static/ku.png",name: "Kasetsart University", country: "Thailand", city: "Bangkok", region: "Asia", program: "Engineering & Technology", link: "https://www.ku.ac.th/en" },
+      { image:"static/udep.png",name: "Universidad de Piura", country: "Peru", city: "Piura", region: "South America", program: "Business & Economics", link: "https://www.udep.edu.pe/" },
+      { image:"static/rus.png",name: "Plekhanov Russian University of Economics", country: "Russia", city: "Moscow", region: "Europe", program: "Business & Economics", link: "https://eng.rea.ru/" },
+      { image:"static/reguin.png",name: "University of Regina", country: "Canada", city: "Regina", region: "North America", program: "General & Comprehensive Studies", link: "https://www.uregina.ca/" },
+      { image:"static/ling.png",name: "Lingnan University", country: "Hong Kong", city: "Hong Kong", region: "Asia", program: "Arts, Humanities & Social Sciences", link: "https://www.ln.edu.hk/" },
+      { image:"static/shin.png",name: "Shih Chien University", country: "Taiwan", city: "Taipei", region: "Asia", program: "General & Comprehensive Studies", link: "https://www.usc.edu.tw/" },
+      { image:"static/pen.png",name: "Cape Peninsula University of Technology", country: "South Africa", city: "Cape Town", region: "Africa", program: "Engineering & Technology", link: "https://www.cput.ac.za/" },
+      { image:"static/pais.png",name: "Universidad del Pais Vasco", country: "Spain", city: "San Sebastian", region: "Europe", program: "General & Comprehensive Studies", link: "https://www.ehu.eus/en/en-home" },
+      { image:"static/kan.png",name: "Kanagawa University", country: "Japan", city: "Yokohama", region: "Asia", program: "Business & Economics", link: "https://www.kanagawa-u.ac.jp/english/" },
+      { image:"static/stan.png",name: "Stamford International University", country: "Thailand", city: "Bangkok", region: "Asia", program: "Business & Economics", link: "https://www.stamford.edu/" },
+      { image:"static/oto.png",name: "University of Ottawa", country: "Canada", city: "Ottawa", region: "North America", program: "General & Comprehensive Studies", link: "https://www.uottawa.ca/en" },
+      { image:"static/chica.png",name: "North Park University", country: "USA", city: "Chicago", region: "North America", program: "Arts, Humanities & Social Sciences", link: "https://www.northpark.edu/" },
+      { image:"static/insec.png",name: "BBA-INSEEC Business School", country: "France", city: "Bordeaux", region: "Europe", program: "Business & Economics", link: "https://www.inseec.com/" },
+      { image:"static/ucl.png",name: "UCL University College", country: "Denmark", city: "Svendborg", region: "Europe", program: "General & Comprehensive Studies", link: "https://www.ucl.dk/international" },
+      { image:"static/font.png",name: "Fontys University of Applied Sciences", country: "Netherlands", city: "Eindhoven", region: "Europe", program: "Engineering & Technology", link: "https://www.fontys.edu/" }
+    ];
+
+function renderUniversities(list) {
+  const container = document.getElementById('universityList');
+  container.innerHTML = '';
+  list.forEach(u => {
+    const card = document.createElement('div');
+    card.className = 'university-card';
+    
+    card.innerHTML = `
+      <img src="${u.image || 'static/defaultuni.png'}" alt="University Image" class="university-img">
+      <div class="university-info">
+        <strong>${u.country}</strong><br>
+        ${u.name}<br>
+        ${u.city}<br>
+        <a href="${u.link}" target="_blank">Visit Website</a>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+
+
+    function applyFilters() {
+      const region = document.getElementById('regionSelect').value;
+      const program = document.getElementById('programSelect').value;
+
+      const filtered = universities.filter(u => {
+        return (!region || u.region === region) && (!program || u.program === program);
+      });
+
+      renderUniversities(filtered);
+    }
+
+    
+  window.onload = () => {
+  const defaultRegion = "Europe"; 
+  document.getElementById('regionSelect').value = defaultRegion;
+  const filtered = universities.filter(u => u.region === defaultRegion);
+  renderUniversities(filtered);
+};
+  </script>
+
+</section>
+</body>
+</html>
